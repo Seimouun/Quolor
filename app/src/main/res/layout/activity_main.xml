@@ -4,15 +4,153 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@color/black"
+    tools:context=".activities.MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/main_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@color/gray"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/main_quolor_icon"
+        android:layout_width="114dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
+        android:contentDescription="quoloricon"
+        app:layout_constraintBottom_toTopOf="@+id/main_current_tab_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/main_toolbar"
+        app:srcCompat="@drawable/quolor" />
 
     <TextView
+        android:id="@+id/main_current_tab_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="15dp"
+        android:fontFamily="@font/heebo"
+        android:text="CurrentTab"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/main_toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_quolor_icon" />
+
+    <FrameLayout
+        android:id="@+id/main_framelayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/main_visualization_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_toolbar" />
+
+    <ImageButton
+        android:id="@+id/main_lights_button"
+        style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:adjustViewBounds="false"
+        android:background="@color/gray"
+        android:contentDescription="lights"
+        android:fadingEdge="none"
+        android:layerType="software"
+        android:padding="50px"
+        android:saveEnabled="false"
+        android:scaleType="fitCenter"
+        android:scaleX="1"
+        android:scaleY="1"
+        android:scrollbarSize="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/main_scenes_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/lamp"
+        app:tint="@color/light_gray" />
+
+    <ImageButton
+        android:id="@+id/main_scenes_button"
+        style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:adjustViewBounds="false"
+        android:background="@color/gray"
+        android:fadingEdge="none"
+        android:layerType="software"
+        android:padding="50px"
+        android:saveEnabled="false"
+        android:scaleType="fitCenter"
+        android:scrollbarSize="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/main_visualization_button"
+        app:layout_constraintStart_toEndOf="@+id/main_lights_button"
+        app:srcCompat="@drawable/palette"
+        app:tint="@color/light_gray" />
+
+    <ImageButton
+        android:id="@+id/main_visualization_button"
+        style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:adjustViewBounds="false"
+        android:background="@color/gray"
+        android:fadingEdge="none"
+        android:layerType="software"
+        android:padding="50px"
+        android:saveEnabled="false"
+        android:scaleType="fitCenter"
+        android:scrollbarSize="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/main_automation_button"
+        app:layout_constraintStart_toEndOf="@+id/main_scenes_button"
+        app:srcCompat="@drawable/microphone"
+        app:tint="@color/light_gray" />
+
+    <ImageButton
+        android:id="@+id/main_automation_button"
+        style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:adjustViewBounds="false"
+        android:background="@color/gray"
+        android:fadingEdge="none"
+        android:layerType="software"
+        android:padding="50px"
+        android:saveEnabled="false"
+        android:scaleType="fitCenter"
+        android:scrollbarSize="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/main_options_button"
+        app:layout_constraintStart_toEndOf="@+id/main_visualization_button"
+        app:srcCompat="@drawable/play"
+        app:tint="@color/light_gray" />
+
+    <ImageButton
+        android:id="@+id/main_options_button"
+        style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:adjustViewBounds="false"
+        android:background="@color/gray"
+        android:fadingEdge="none"
+        android:layerType="software"
+        android:padding="50px"
+        android:saveEnabled="false"
+        android:scaleType="fitCenter"
+        android:scrollbarSize="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/main_automation_button"
+        app:srcCompat="@drawable/gears"
+        app:tint="@color/light_gray" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
