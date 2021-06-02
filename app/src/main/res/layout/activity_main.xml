@@ -47,6 +47,7 @@
         app:layout_constraintTop_toBottomOf="@+id/main_quolor_icon" />
 
     <FrameLayout
+
         android:id="@+id/main_framelayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
