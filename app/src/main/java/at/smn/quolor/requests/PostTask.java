@@ -28,7 +28,7 @@ public class PostTask extends AsyncTask<String, String, String> {
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String line = reader.readLine();
-            return conn.getResponseCode() + ";" + line;
+            return line;
         } catch (Exception e) {
             e.printStackTrace();
         }

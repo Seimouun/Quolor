@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -37,20 +38,28 @@ public class AuthentificateBridgeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Button authenticate = view.findViewById(R.id.abf_authenticate_button);
         TextView authentificationStatusText = view.findViewById(R.id.abf_authentification_status);
+        ProgressBar progressBar = view.findViewById(R.id.abf_progressBar);
         authenticate.setOnClickListener(v -> {
-            LightLogic.Response res = LightLogic.generateAuthUser(MainActivity.bridgeIP);
-            if(res == LightLogic.Response.SUCCESS){
-                try {
-                    JSONArray jsonArray = new JSONArray(res.getResponse());
-                    JSONObject object = jsonArray.getJSONObject(0);
-                    MainActivity.userAuthentification = object.getJSONObject("success").getString("username");
-                    System.out.println(MainActivity.userAuthentification);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+            authentificationStatusText.setText("");
+            progressBar.setVisibility(View.VISIBLE);
+            Thread t = new Thread(() -> {
+                LightLogic.Response res = LightLogic.generateAuthUser();
+                if(res == LightLogic.Response.SUCCESS){
+                    try {
+                        JSONArray jsonArray = new JSONArray(res.getResponse());
+                        JSONObject object = jsonArray.getJSONObject(0);
+                        MainActivity.userAuthentification = object.getJSONObject("success").getString("username");
+                        LightLogic.saveAuthToken(MainActivity.userAuthentification);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }else if(res == LightLogic.Response.BUTTON_NOT_PRESSED){
+                    progressBar.setVisibility(View.INVISIBLE);
+
+                    authentificationStatusText.setText("Link button not pressed. Try again!");
                 }
-            }else if(res == LightLogic.Response.BUTTON_NOT_PRESSED){
-                authentificationStatusText.setText("Button not pressed");
-            }
+            });
+            t.start();
         });
     }
 }

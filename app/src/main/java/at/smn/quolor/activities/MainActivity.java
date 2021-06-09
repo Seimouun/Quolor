@@ -10,16 +10,20 @@ import android.view.View;
 import at.smn.quolor.R;
 import at.smn.quolor.activities.fragments.AuthentificateBridgeFragment;
 import at.smn.quolor.activities.fragments.LightsFragment;
+import at.smn.quolor.util.LightLogic;
 
 public class MainActivity extends AppCompatActivity {
 
     public static String bridgeIP = "192.168.10.100";
     public static String userAuthentification = null;
+    public static MainActivity main;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        main = this;
+        LightLogic.loadAuthToken();
 
         View frame = findViewById(R.id.main_framelayout);
         Fragment lightsFragment = new AuthentificateBridgeFragment();
@@ -27,5 +31,8 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.main_framelayout, lightsFragment);
         transaction.commit();
+    }
+    public static MainActivity getMain(){
+        return main;
     }
 }

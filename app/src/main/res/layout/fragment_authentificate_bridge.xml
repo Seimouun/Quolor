@@ -18,10 +18,56 @@
 
     <TextView
         android:id="@+id/abf_authentification_status"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:textColor="#FF0000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/abf_authenticate_button" />
+
+    <TextView
+        android:id="@+id/abf_authentification_status2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:text="No Authentification found!"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/abf_authentification_status3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/abf_authentification_status3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:text="Press the link button on your bridge and then the authenticate button in the app!"
+        android:textColor="#9E9E9E"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/abf_authenticate_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/abf_progressBar"
+        style="@android:style/Widget.Holo.Light.ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/abf_authentification_status"
+        app:layout_constraintEnd_toEndOf="@+id/abf_authentification_status"
+        app:layout_constraintStart_toStartOf="@+id/abf_authentification_status"
+        app:layout_constraintTop_toTopOf="@+id/abf_authentification_status" />
 </androidx.constraintlayout.widget.ConstraintLayout>

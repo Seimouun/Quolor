@@ -1,8 +1,20 @@
 package at.smn.quolor.util;
 
+import android.content.Context;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import at.smn.quolor.activities.MainActivity;
@@ -11,6 +23,37 @@ import at.smn.quolor.requests.PostTask;
 import at.smn.quolor.requests.PutTask;
 
 public class LightLogic {
+
+    public static void loadAuthToken(){
+        try {
+            File file = new File(MainActivity.getMain().getExternalFilesDir(null), "config.json");
+            FileReader reader  = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            StringBuilder stringBuilder = new StringBuilder();
+            String line = bufferedReader.readLine();
+            while(line != null){
+                stringBuilder.append(line).append("\n");
+                line = bufferedReader.readLine();
+            }
+            bufferedReader.close();
+            String jsonString = stringBuilder.toString();
+            if(!"".equals(jsonString) && jsonString != null) {
+                JSONObject jsonObject = new JSONObject(jsonString);
+                MainActivity.userAuthentification = jsonObject.getString("token");
+            }
+        }catch (Exception e){e.printStackTrace();}
+    }
+    public static void saveAuthToken(String token){
+        try {
+            JSONObject object = new JSONObject();
+            object.put("token", token);
+            File file = new File(MainActivity.getMain().getExternalFilesDir(null), "config.json");
+            FileWriter fileWriter = new FileWriter(file);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(object.toString());
+            bufferedWriter.close();
+        }catch (Exception e){e.printStackTrace();}
+    }
 
     public static void loadLights(){
 
