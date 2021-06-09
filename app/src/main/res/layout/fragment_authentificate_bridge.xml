@@ -23,12 +23,13 @@
         android:layout_marginTop="40dp"
         android:gravity="center"
         android:textColor="#FF0000"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/abf_authenticate_button" />
 
     <TextView
-        android:id="@+id/abf_authentification_status2"
+        android:id="@+id/abf_authInfoH"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
@@ -37,13 +38,13 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/abf_authentification_status3"
+        app:layout_constraintBottom_toTopOf="@+id/abf_authInfoP"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/abf_authentification_status3"
+        android:id="@+id/abf_authInfoP"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"

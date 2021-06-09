@@ -11,4 +11,5 @@
     <color name="light_gray">#424242</color>
     <color name="lighter_gray">#838383</color>
     <color name="app_main_color">#da004d</color>
+    <color name="app_success_color">#6DEA00</color>
 </resources>

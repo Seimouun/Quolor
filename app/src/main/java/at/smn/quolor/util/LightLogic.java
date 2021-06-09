@@ -24,7 +24,7 @@ import at.smn.quolor.requests.PutTask;
 
 public class LightLogic {
 
-    public static void loadAuthToken(){
+    public static boolean loadAuthToken(){
         try {
             File file = new File(MainActivity.getMain().getExternalFilesDir(null), "config.json");
             FileReader reader  = new FileReader(file);
@@ -41,7 +41,11 @@ public class LightLogic {
                 JSONObject jsonObject = new JSONObject(jsonString);
                 MainActivity.userAuthentification = jsonObject.getString("token");
             }
-        }catch (Exception e){e.printStackTrace();}
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
     public static void saveAuthToken(String token){
         try {
