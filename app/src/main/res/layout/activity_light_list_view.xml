@@ -4,16 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:minHeight="80dp"
     tools:context=".activities.listview.LightListView">
+
+    <ImageView
+        android:id="@+id/allv_background_color"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/allv_light_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/allv_light_name"
+        app:srcCompat="@drawable/roundedbutton"
+        app:tint="#1AE10000" />
 
     <TextView
         android:id="@+id/allv_light_name"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
+        android:gravity="center_vertical"
         android:text="TextView"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/allv_light_icon"
@@ -25,10 +42,24 @@
         android:id="@+id/allv_light_icon"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@color/app_main_color" />
+
+    <Switch
+        android:id="@+id/allv_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:textColorHighlight="@color/app_main_color"
+        android:textColorLink="@color/app_main_color"
+        android:theme="@style/SwitchTheme"
+        app:layout_constraintBottom_toBottomOf="@+id/allv_light_name"
+        app:layout_constraintEnd_toEndOf="@+id/allv_light_name"
+        app:layout_constraintTop_toTopOf="@+id/allv_light_name" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

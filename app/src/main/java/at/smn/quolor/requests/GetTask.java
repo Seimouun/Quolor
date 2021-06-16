@@ -4,6 +4,8 @@ import android.os.AsyncTask;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
 import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -11,22 +13,19 @@ import javax.net.ssl.HttpsURLConnection;
 public class GetTask extends AsyncTask<String, String, String> {
     @Override
     protected String doInBackground(String... params) {
-        URL url;
-        String response = "";
-        try {
-            url = new URL(params[0]);
+        String urlString = params[0]; // URL to call
 
-            HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+        try {
+            URL url = new URL(urlString);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.connect();
 
-            String line;
-            BufferedReader br=new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            while ((line=br.readLine()) != null) {
-                response+=line;
-            }
+            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String line = reader.readLine();
+            return line;
         } catch (Exception e) {}
 
-        return response;
+        return null;
     }
 }

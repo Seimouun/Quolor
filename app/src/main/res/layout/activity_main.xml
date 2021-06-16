@@ -48,110 +48,89 @@
 
     <FrameLayout
 
-        android:id="@+id/main_framelayout"
+        android:id="@+id/loading_framelayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/main_visualization_button"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        app:layout_constraintBottom_toTopOf="@+id/main_audio_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_toolbar" />
 
+    <FrameLayout
+
+        android:id="@+id/main_framelayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        app:layout_constraintBottom_toBottomOf="@+id/loading_framelayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_toolbar">
+
+    </FrameLayout>
+
     <ImageButton
         android:id="@+id/main_lights_button"
-        style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+        style="@android:style/Widget.ImageButton"
         android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:adjustViewBounds="false"
-        android:background="@color/gray"
-        android:contentDescription="lights"
-        android:fadingEdge="none"
-        android:layerType="software"
-        android:padding="50px"
-        android:saveEnabled="false"
-        android:scaleType="fitCenter"
-        android:scaleX="1"
-        android:scaleY="1"
-        android:scrollbarSize="0dp"
+        android:layout_height="80dp"
+        android:background="@drawable/radio_button_light"
+        android:padding="20dp"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/main_scenes_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/lamp"
-        app:tint="@color/light_gray" />
+        app:srcCompat="@drawable/lamp" />
 
     <ImageButton
         android:id="@+id/main_scenes_button"
-        style="@android:style/Widget.DeviceDefault.Light.ImageButton"
         android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:adjustViewBounds="false"
-        android:background="@color/gray"
-        android:fadingEdge="none"
-        android:layerType="software"
-        android:padding="50px"
-        android:saveEnabled="false"
-        android:scaleType="fitCenter"
-        android:scrollbarSize="0dp"
+        android:layout_height="80dp"
+        android:background="@drawable/radio_button_light"
+        android:padding="20dp"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/main_visualization_button"
+        app:layout_constraintEnd_toStartOf="@+id/main_audio_button"
         app:layout_constraintStart_toEndOf="@+id/main_lights_button"
-        app:srcCompat="@drawable/palette"
-        app:tint="@color/light_gray" />
+        app:srcCompat="@drawable/palette" />
 
     <ImageButton
-        android:id="@+id/main_visualization_button"
-        style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+        android:id="@+id/main_audio_button"
         android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:adjustViewBounds="false"
-        android:background="@color/gray"
-        android:fadingEdge="none"
-        android:layerType="software"
-        android:padding="50px"
-        android:saveEnabled="false"
-        android:scaleType="fitCenter"
-        android:scrollbarSize="0dp"
+        android:layout_height="80dp"
+        android:background="@drawable/radio_button_light"
+        android:padding="20dp"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/main_automation_button"
         app:layout_constraintStart_toEndOf="@+id/main_scenes_button"
-        app:srcCompat="@drawable/microphone"
-        app:tint="@color/light_gray" />
+        app:srcCompat="@drawable/microphone" />
 
     <ImageButton
         android:id="@+id/main_automation_button"
-        style="@android:style/Widget.DeviceDefault.Light.ImageButton"
         android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:adjustViewBounds="false"
-        android:background="@color/gray"
-        android:fadingEdge="none"
-        android:layerType="software"
-        android:padding="50px"
-        android:saveEnabled="false"
-        android:scaleType="fitCenter"
-        android:scrollbarSize="0dp"
+        android:layout_height="80dp"
+        android:background="@drawable/radio_button_light"
+        android:padding="20dp"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/main_options_button"
-        app:layout_constraintStart_toEndOf="@+id/main_visualization_button"
-        app:srcCompat="@drawable/play"
-        app:tint="@color/light_gray" />
+        app:layout_constraintEnd_toStartOf="@+id/main_settings_button"
+        app:layout_constraintStart_toEndOf="@+id/main_audio_button"
+        app:srcCompat="@drawable/play" />
 
     <ImageButton
-        android:id="@+id/main_options_button"
-        style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+        android:id="@+id/main_settings_button"
         android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:adjustViewBounds="false"
-        android:background="@color/gray"
-        android:fadingEdge="none"
-        android:layerType="software"
-        android:padding="50px"
-        android:saveEnabled="false"
-        android:scaleType="fitCenter"
-        android:scrollbarSize="0dp"
+        android:layout_height="80dp"
+        android:background="@drawable/radio_button_light"
+        android:padding="20dp"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/main_automation_button"
-        app:srcCompat="@drawable/gears"
-        app:tint="@color/light_gray" />
+        app:srcCompat="@drawable/gears" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

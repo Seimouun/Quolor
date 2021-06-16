@@ -87,11 +87,13 @@ public class LightLogic {
     }
     public static String getLights(){
         GetTask task = new GetTask();
+        System.out.println(MainActivity.bridgeIP + ", " + MainActivity.userAuthentification);
         task.execute("http://" + MainActivity.bridgeIP + "/api/" + MainActivity.userAuthentification + "/lights");
+        String jsonString = "";
         try {
-            return task.get();
+            jsonString = task.get();
         } catch (Exception e) {e.printStackTrace();}
-        return null;
+        return jsonString;
     }
     public static String getLightInfo(int lightID){
         GetTask task = new GetTask();
@@ -105,14 +107,14 @@ public class LightLogic {
         PutTask task = new PutTask();
         task.execute("http://" + MainActivity.bridgeIP + "/api/" + MainActivity.userAuthentification + "/lights/" + lightID + "/state", "{\"on\":" + state + "}");
         try {
-            task.get();
+            System.out.println("rect get:" + task.get());
         } catch (Exception e) {e.printStackTrace();}
     }
     public static void setLightColor(int lightID, int saturation, int brightness, int hue){
         PutTask task = new PutTask();
         task.execute("http://" + MainActivity.bridgeIP + "/api/" + MainActivity.userAuthentification + "/lights/" + lightID + "/state", "{\"on\":true, \"sat\":" + saturation + ", \"bri\":" + brightness + ",\"hue\":" + hue + "}");
         try {
-            task.get();
+            System.out.println(task.get());
         } catch (Exception e) {e.printStackTrace();}
     }
 

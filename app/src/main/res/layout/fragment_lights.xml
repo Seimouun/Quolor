@@ -5,11 +5,15 @@
     android:layout_height="match_parent"
     tools:context=".activities.fragments.LightsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
+        android:id="@+id/fl_lightsView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="dis is blank frago fago"
-        android:textColor="#FFFFFF" />
+        android:cacheColorHint="#FFFFFF"
+        android:clickable="true"
+        android:divider="#30FFFFFF"
+        android:dividerHeight="1dp"
+        tools:listitem="@layout/activity_light_list_view">
 
+    </ListView>
 </FrameLayout>
