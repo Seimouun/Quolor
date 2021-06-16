@@ -6,12 +6,12 @@ import java.util.List;
 public class Scene {
 
     String sceneName;
-    List<Light> lightList;
+    int[] idList;
     int[] colorArr;
 
-    public Scene(String sceneName, List<Light> lightList, int[] colorArr) {
+    public Scene(String sceneName, int[] idList, int[] colorArr) {
         this.sceneName = sceneName;
-        this.lightList = lightList;
+        this.idList = idList;
         this.colorArr = colorArr;
     }
 
@@ -19,8 +19,8 @@ public class Scene {
         return sceneName;
     }
 
-    public List<Light> getLightList() {
-        return lightList;
+    public int[] getLightIDList() {
+        return idList;
     }
 
     public int[] getColorArr() {

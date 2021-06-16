@@ -49,8 +49,8 @@ public class ScenesViewAdapter extends ArrayAdapter<Scene> {
         if (position < sceneList.size()) {
             Scene scene = sceneList.get(position);
             view.findViewById(R.id.asva_set_scene_button).setOnClickListener(v -> {
-                for (int i = 0; i < scene.getLightList().size(); i++) {
-                    Light light = scene.getLightList().get(i);
+                for (int i = 0; i < scene.getLightIDList().length; i++) {
+                    Light light = Light.getLight(scene.getLightIDList()[i]);
                     light.setColor(scene.getColorArr()[i]);
                 }
             });

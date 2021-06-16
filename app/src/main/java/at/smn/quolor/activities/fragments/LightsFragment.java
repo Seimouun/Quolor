@@ -34,7 +34,7 @@ import top.defaults.colorpicker.ColorPickerPopup;
  */
 public class LightsFragment extends Fragment {
 
-    List<Light> lightList = new ArrayList<>();
+    public static List<Light> lightList = new ArrayList<>();
     public static ListView lightView = null;
     public static LightViewAdapter lightViewAdapter = null;
 

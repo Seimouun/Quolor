@@ -86,6 +86,27 @@ public class Light {
         LightLogic.setLightColor(getId(), getSat(), getBri(), getHue());
         LightsFragment.lightViewAdapter.notifyDataSetChanged();
     }
+    public void setColor(int color, boolean updateLight){
+        float[] hsv = new float[3];
+        Color.colorToHSV(color, hsv);
+        //light.getHue() / 65535f * 360f, light.getSat() / 255f, light.getBri() / 255f
+        this.hue = (int)(hsv[0] / 360 * 65535);
+        this.sat = (int)(hsv[1] * 255);
+        this.bri = (int)(hsv[2] * 255);
+        if(updateLight) {
+            LightLogic.setLightColor(getId(), getSat(), getBri(), getHue());
+            LightsFragment.lightViewAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public static Light getLight(int id){
+        for(Light l : LightsFragment.lightList){
+            if(l.getId() == id){
+                return l;
+            }
+        }
+        return null;
+    }
 
     public enum LightType {
         BULB, STRIP;

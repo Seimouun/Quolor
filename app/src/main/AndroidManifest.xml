@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Quolor">
-        <activity android:name=".activities.adapters.ScenesViewAdapter"></activity>
+        <activity android:name=".activities.listview.SelectLightListView"></activity>
+        <activity android:name=".activities.adapters.ScenesViewAdapter" />
 
         <meta-data
             android:name="com.google.android.actions"
