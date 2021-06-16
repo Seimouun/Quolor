@@ -85,6 +85,10 @@ public class Light {
         this.checked = checked;
     }
 
+    public int getColor(){
+        return Color.HSVToColor(new float[] {getHue() / 65535f * 360f, getSat() / 255f, getBri() / 255f});
+    }
+
     public void setColor(int color){
         float[] hsv = new float[3];
         Color.colorToHSV(color, hsv);
@@ -107,6 +111,7 @@ public class Light {
             LightsFragment.lightViewAdapter.notifyDataSetChanged();
         }
     }
+
 
     public static Light getLight(int id){
         for(Light l : LightsFragment.lightList){

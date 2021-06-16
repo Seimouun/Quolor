@@ -1,14 +1,18 @@
 package at.smn.quolor.activities.fragments;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -36,11 +40,21 @@ public class ScenesFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_lights, container, false);
     }
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ListView scenesView = view.findViewById(R.id.sf_scenes_list);
         sceneViewAdapter = new ScenesViewAdapter(MainActivity.getMain(), R.layout.activity_scenes_view_adapter, sceneList);
         scenesView.setAdapter(sceneViewAdapter);
+        Button addSceneButton = view.findViewById(R.id.sf_add_scene_button);
+        addSceneButton.setOnClickListener(v -> {
+            LightsFragment.lightList.forEach(light -> light.setChecked(false));
+            openCreateActivity();
+        });
+    }
+    public void openCreateActivity() {
+        Intent intent = new Intent(MainActivity.getMain(), CreateSceneActivity.class);
+        startActivity(intent);
     }
 }
