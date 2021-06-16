@@ -47,6 +47,9 @@ public class SelectLightAdapter extends ArrayAdapter<Light> {
             EditText sceneName = view.findViewById(R.id.asllv_light_name);
             ImageView backgroundView = view.findViewById(R.id.allv_background_color);
             backgroundView.setColorFilter(Color.HSVToColor(new float[] {light.getHue() / 65535f * 360f, light.getSat() / 255f, light.getBri() / 255f}));
+            box.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                light.setChecked(isChecked);
+            });
             view.setOnClickListener(v -> {
                 new ColorPickerPopup.Builder(MainActivity.getMain())
                         .initialColor(Color.HSVToColor(new float[] {light.getHue() / 65535f * 360f, light.getSat() / 255f, light.getBri() / 255f}))

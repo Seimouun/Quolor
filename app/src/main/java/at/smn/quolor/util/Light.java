@@ -13,6 +13,7 @@ public class Light {
     int hue;
     int sat;
     int id;
+    boolean checked = false;
 
     public Light(int id, LightType type, String lightName, boolean on, int bri, int hue, int sat) {
         this.id = id;
@@ -74,6 +75,14 @@ public class Light {
 
     public void setSat(int sat) {
         this.sat = sat;
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 
     public void setColor(int color){
