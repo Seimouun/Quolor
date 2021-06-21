@@ -20,6 +20,7 @@ import android.widget.ListView;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import at.smn.quolor.R;
@@ -36,11 +37,11 @@ import at.smn.quolor.util.Scene;
 public class CreateSceneActivity extends AppCompatActivity {
 
     SelectLightAdapter selectLightAdapter = null;
-    public static List<Light> lightList = new ArrayList<>();
+    public static List<Light> lightList = new ArrayList<>(LightsFragment.lightList);
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_create_scene);
         ListView listView = findViewById(R.id.fcs_lights_list_view);
         selectLightAdapter = new SelectLightAdapter(MainActivity.getMain(), R.layout.activity_select_light_list_view, lightList);
@@ -53,12 +54,18 @@ public class CreateSceneActivity extends AppCompatActivity {
             List<Integer> colors = new ArrayList<>();
             for (int i = 0; i < selectLightAdapter.getCount(); i++) {
                 Light light = selectLightAdapter.getItem(i);
+                System.out.println("id: " + light.getLightName() + ", " + light.isChecked());
                 if(light.isChecked()) {
                     selectedLights.add(light.getId());
                     colors.add(light.getColor());
                 }
             }
             ScenesFragment.sceneViewAdapter.add(new Scene(sceneName.getText().toString(), asArray(selectedLights), asArray(colors)));
+            finish();
+            LightsFragment.updateLights();
+        });
+        cancelButton.setOnClickListener(v -> {
+            finish();
         });
     }
     public int[] asArray(List<Integer> integers){

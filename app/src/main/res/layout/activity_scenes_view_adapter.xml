@@ -13,6 +13,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:text="SceneName"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,4 +30,15 @@
         app:layout_constraintBottom_toBottomOf="@+id/asva_scene_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/asva_scene_name" />
+
+    <ProgressBar
+        android:id="@+id/asva_loading_circle"
+        style="@android:style/Widget.ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/asva_set_scene_button"
+        app:layout_constraintStart_toStartOf="@+id/asva_set_scene_button"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -38,7 +38,7 @@ public class ScenesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_lights, container, false);
+        return inflater.inflate(R.layout.fragment_scenes, container, false);
     }
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -56,5 +56,11 @@ public class ScenesFragment extends Fragment {
     public void openCreateActivity() {
         Intent intent = new Intent(MainActivity.getMain(), CreateSceneActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        sceneViewAdapter.notifyDataSetChanged();
     }
 }

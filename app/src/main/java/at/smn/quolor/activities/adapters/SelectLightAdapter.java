@@ -10,9 +10,12 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -44,9 +47,25 @@ public class SelectLightAdapter extends ArrayAdapter<Light> {
         if (position < lightList.size()) {
             Light light = lightList.get(position);
             CheckBox box = view.findViewById(R.id.asllv_checkbox);
-            EditText sceneName = view.findViewById(R.id.asllv_light_name);
-            ImageView backgroundView = view.findViewById(R.id.allv_background_color);
-            backgroundView.setColorFilter(Color.HSVToColor(new float[] {light.getHue() / 65535f * 360f, light.getSat() / 255f, light.getBri() / 255f}));
+            TextView lightName = view.findViewById(R.id.asllv_light_name);
+            ImageView backgroundView = view.findViewById(R.id.asllv_background_color);
+            ImageView lightIcon = view.findViewById(R.id.asllv_light_icon);
+            switch (light.getType()){
+                case BULB:
+                    lightIcon.setImageResource(R.drawable.lamp);
+                    break;
+                case STRIP:
+                    lightIcon.setImageResource(R.drawable.gears);
+                    break;
+                default:
+                    break;
+            }
+            if(box.isChecked()) {
+                backgroundView.setColorFilter(Color.HSVToColor(new float[]{light.getHue() / 65535f * 360f, light.getSat() / 255f, light.getBri() / 255f}));
+            }else{
+                backgroundView.setColorFilter(Color.argb(0.1f,1f,1f,1f));
+            }
+            lightName.setText(light.getLightName());
             box.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 light.setChecked(isChecked);
             });
@@ -61,6 +80,8 @@ public class SelectLightAdapter extends ArrayAdapter<Light> {
                             public void onColorPicked(int color) {
                                 light.setColor(color, false);
                                 backgroundView.setColorFilter(Color.HSVToColor(new float[] {light.getHue() / 65535f * 360f, light.getSat() / 255f, light.getBri() / 255f}));
+                                light.setChecked(true);
+                                box.setChecked(true);
                             }
                         });
             });

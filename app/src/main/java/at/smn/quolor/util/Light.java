@@ -114,7 +114,9 @@ public class Light {
 
 
     public static Light getLight(int id){
+        System.out.println(LightsFragment.lightList.size());
         for(Light l : LightsFragment.lightList){
+            System.out.println(l.getId() + ", " + id);
             if(l.getId() == id){
                 return l;
             }

@@ -11,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -45,14 +47,28 @@ public class ScenesViewAdapter extends ArrayAdapter<Scene> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(ctx);
-        View view = inflater.inflate(R.layout.activity_light_list_view, null);
+        View view = inflater.inflate(R.layout.activity_scenes_view_adapter, null);
         if (position < sceneList.size()) {
             Scene scene = sceneList.get(position);
-            view.findViewById(R.id.asva_set_scene_button).setOnClickListener(v -> {
-                for (int i = 0; i < scene.getLightIDList().length; i++) {
-                    Light light = Light.getLight(scene.getLightIDList()[i]);
-                    light.setColor(scene.getColorArr()[i]);
-                }
+            Button button = view.findViewById(R.id.asva_set_scene_button);
+            TextView sceneName = view.findViewById(R.id.asva_scene_name);
+            sceneName.setText(scene.getSceneName());
+            button.setOnClickListener(v -> {
+                new Thread(() -> {
+                    ProgressBar circle = view.findViewById(R.id.asva_loading_circle);
+                    MainActivity.getMain().runOnUiThread(() -> {
+                        circle.setVisibility(View.VISIBLE);
+                        button.setVisibility(View.INVISIBLE);
+                    });
+                    for (int i = 0; i < scene.getLightIDList().length; i++) {
+                        Light light = Light.getLight(scene.getLightIDList()[i]);
+                        light.setColor(scene.getColorArr()[i]);
+                    }
+                    MainActivity.getMain().runOnUiThread(() -> {
+                        circle.setVisibility(View.INVISIBLE);
+                        button.setVisibility(View.VISIBLE);
+                    });
+                }).start();
             });
         }
         return view;

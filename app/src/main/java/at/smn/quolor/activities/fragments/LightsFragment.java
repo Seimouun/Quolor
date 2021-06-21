@@ -35,7 +35,7 @@ import top.defaults.colorpicker.ColorPickerPopup;
 public class LightsFragment extends Fragment {
 
     public static List<Light> lightList = new ArrayList<>();
-    public static ListView lightView = null;
+    private static ListView lightView = null;
     public static LightViewAdapter lightViewAdapter = null;
 
     @Override
@@ -85,6 +85,37 @@ public class LightsFragment extends Fragment {
                 transaction2.replace(R.id.loading_framelayout, new Fragment());
                 transaction2.commit();
             });
+        }).start();
+    }
+    public static void updateLights(){
+        List<Light> lightListTemp = new ArrayList<>();
+        new Thread(() -> {
+            try {
+                String jsonString = LightLogic.getLights();
+                System.out.println("jsonString: " + jsonString);
+                JSONObject obj = new JSONObject(jsonString);
+                Iterator<String> iterator = obj.keys();
+                while (iterator.hasNext()) {
+                    String key = iterator.next();
+                    JSONObject light = obj.getJSONObject(key);
+                    JSONObject state = light.getJSONObject("state");
+
+                    boolean on = state.getBoolean("on");
+                    int id = Integer.parseInt(key);
+                    System.out.println(key);
+                    int bri = state.getInt("bri");
+                    int hue = state.getInt("hue");
+                    int sat = state.getInt("sat");
+                    String name = light.getString("name");
+                    Light.LightType type = Light.LightType.getType(light.getJSONObject("config").getString("archetype"));
+                    Light lightObject = new Light(id, type, name, on, bri, hue, sat);
+                    lightListTemp.add(lightObject);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            lightList = lightListTemp;
+            lightViewAdapter.notifyDataSetChanged();
         }).start();
     }
 }
